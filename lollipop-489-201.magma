@@ -1,4 +1,7 @@
-QFs := BinaryQuadraticForms(-547);
+D := -547;
+QFs := BinaryQuadraticForms(D);
 Identity(QFs);
 isogeny := QFs !<11,5,13>;
 Order(isogeny);
+h := ClassNumber(D);
+h;
