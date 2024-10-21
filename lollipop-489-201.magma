@@ -1,0 +1,4 @@
+QFs := BinaryQuadraticForms(-547);
+Identity(QFs);
+isogeny := QFs !<11,5,13>;
+Order(isogeny);
