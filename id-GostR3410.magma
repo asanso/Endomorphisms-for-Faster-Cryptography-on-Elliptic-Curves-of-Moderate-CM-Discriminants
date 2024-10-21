@@ -1,0 +1,7 @@
+D := -619;
+QFs := BinaryQuadraticForms(D);
+h := ClassNumber(D);
+Identity(QFs);
+h;
+Q := PrimeForm(QFs, 5);
+Order(Q);
