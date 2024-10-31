@@ -69,12 +69,12 @@ def fast_scalar_mul(n,P):
     b = vector([int(beta[0]), int(beta[1])]) * N
     k1 = n-b[0]
     k2 = -b[1]
-    print(len(k1.str(2)))
-    print(len(k2.str(2)))
+    #print(len(k1.str(2)))
+    3print(len(k2.str(2)))
     return  multi_scalar_mul(P,k1, full_end, k2)
 
 n = ZZ.random_element(r)
-print(len(n.str(2)))
+#print(len(n.str(2)))
 S1 = n*P
 S2 = fast_scalar_mul(n,P)
 assert S1 == S2
