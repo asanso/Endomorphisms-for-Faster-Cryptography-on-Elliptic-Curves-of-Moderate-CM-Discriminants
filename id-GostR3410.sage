@@ -35,3 +35,21 @@ assert E4.j_invariant() == H.roots()[0][0]
 
 phi4 = E4.isogenies_prime_degree(5)[0]
 assert phi4.codomain().j_invariant() == H.roots()[4][0]
+
+# Computing eigenvalue 
+end =(phi4*phi3*phi2*phi1*phi0)
+iso =end.codomain().isomorphism_to(E0)
+full_end = (iso*end)
+trace = full_end.trace()
+
+norm = 5^5
+r = E0.order()
+Fr = GF(r)
+R.<x> = PolynomialRing(Fr)
+poly = x^2 - trace*x + norm
+roots = poly.roots()
+P = E0.random_point()
+Q = full_end(P)
+eigen = roots[1][0]
+
+assert Q == eigen*P
