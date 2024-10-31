@@ -20,3 +20,18 @@ assert E0.j_invariant() == H.roots()[4][0]
 phi0 =  E0.isogenies_prime_degree(5)[0]
 E1 = phi0.codomain()
 assert E1.j_invariant() == H.roots()[3][0]
+
+phi1 = E1.isogenies_prime_degree(5)[1]
+E2 = phi1.codomain()
+assert E2.j_invariant() == H.roots()[1][0]
+
+phi2 = E2.isogenies_prime_degree(5)[1]
+E3 = phi2.codomain()
+assert E3.j_invariant() == H.roots()[2][0]
+
+phi3 = E3.isogenies_prime_degree(5)[1]
+E4 = phi3.codomain()
+assert E4.j_invariant() == H.roots()[0][0]
+
+phi4 = E4.isogenies_prime_degree(5)[0]
+assert phi4.codomain().j_invariant() == H.roots()[4][0]
