@@ -62,7 +62,30 @@ N = M.LLL()
 N_inv = N**-1
 
 def multi_scalar_mul(P, k1, endo, k2):
-    return k1*P + k2*endo(P)
+    H = endo(P)
+    if k1<0:
+        k1=-k1
+        P = -P
+    if k2<0:
+        k2=-k2
+        H = -H
+    PH = P+H
+    bits_k1 = ZZ(k1).bits()
+    bits_k2 = ZZ(k2).bits()
+    while len(bits_k1) < len(bits_k2):
+        bits_k1.append(0)
+    while len(bits_k2) < len(bits_k1):
+        bits_k2.append(0)
+    R = E0(0)
+    for i in range(len(bits_k1)-1,-1,-1):
+        R = 2*R
+    if bits_k1[i] == 1 and bits_k2[i] == 0:
+        R = R + P
+    if bits_k1[i] == 0 and bits_k2[i] == 1:
+        R = R + H
+    if bits_k1[i] == 1 and bits_k2[i] == 1:
+        R = R+PH
+    return R
 
 def fast_scalar_mul(n,P):
     beta = vector([n,0])*N_inv
