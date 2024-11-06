@@ -47,6 +47,17 @@ eigen = roots[1][0]
  
 assert Q == eigen*P
 
+# endomorphism rational maps
+
+x_num0 = phi0.x_rational_map().numerator()
+x_num1 = phi1.x_rational_map().numerator()
+x_num2 = phi2.x_rational_map().numerator()
+x_num_iso = iso.x_rational_map().numerator()
+
+x_denom0 = phi0.x_rational_map().denominator()
+x_denom1 = phi1.x_rational_map().denominator()
+x_denom2 = phi2.x_rational_map().denominator()
+
 # GLV
 
 M = Matrix([[int(-eigen),1], [int(r),0]])
@@ -62,12 +73,12 @@ def fast_scalar_mul(n,P):
     b = vector([int(beta[0]), int(beta[1])]) * N
     k1 = n-b[0]
     k2 = -b[1]
-    print(len(k1.str(2)))
-    print(len(k2.str(2)))
+    #print(len(k1.str(2)))
+    #print(len(k2.str(2)))
     return  multi_scalar_mul(P,k1, full_end, k2)
 
 n = ZZ.random_element(r)
-print(len(n.str(2)))
+#print(len(n.str(2)))
 S1 = n*P
 S2 = fast_scalar_mul(n,P)
 assert S1 == S2
