@@ -58,6 +58,15 @@ x_denom0 = phi0.x_rational_map().denominator()
 x_denom1 = phi1.x_rational_map().denominator()
 x_denom2 = phi2.x_rational_map().denominator()
 
+y_num0 = phi0.rational_maps()[1].numerator()
+y_num1 = phi1.rational_maps()[1].numerator()
+y_num2 = phi2.rational_maps()[1].numerator()
+y_num_iso = iso.rational_maps()[1].numerator()
+
+y_denom0 = phi0.rational_maps()[1].denominator()
+y_denom1 = phi1.rational_maps()[1].denominator()
+y_denom2 = phi2.rational_maps()[1].denominator()
+
 # GLV
 
 M = Matrix([[int(-eigen),1], [int(r),0]])
