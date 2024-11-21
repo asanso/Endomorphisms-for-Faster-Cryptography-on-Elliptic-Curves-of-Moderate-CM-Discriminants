@@ -74,6 +74,20 @@ M = Matrix([[int(-eigen),1], [int(r),0]])
 N = M.LLL()
 N_inv = N**-1
 
+
+def end_composition(P):
+    x0 = P[0]
+    y0 = P[1]
+    x1 = x_num0(x0)
+    y1 = y_num0(x0,y0)
+    x2 = x_num1(x1)
+    y2 = y_num1(x1,y1)
+    x3 = x_num2(x2)
+    y3 = y_num2(x2,y2)
+    x_fin = x_num_iso(x3)
+    y_fin = y_num_iso(x3,y3)
+
+
 def multi_scalar_mul(P, k1, endo, k2):
     return k1*P + k2*endo(P)
 
@@ -91,3 +105,5 @@ n = ZZ.random_element(r)
 S1 = n*P
 S2 = fast_scalar_mul(n,P)
 assert S1 == S2
+
+Sx =x_num_iso(x_num2(x_num1(x_num0(P[0]))))
