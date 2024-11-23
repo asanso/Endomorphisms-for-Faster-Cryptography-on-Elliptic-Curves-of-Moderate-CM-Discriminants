@@ -33,7 +33,11 @@ def end_composition(P):
     x1 = x_num0(x0,y0,z0) * y_denom0(x0,y0,z0)
     y1 = y_num0(x0,y0,z0)*x_denom0(x0,y0,z0)
     z1 = x_denom0(x0,y0,z0)* y_denom0(x0,y0,z0)
-    
+    #2md isogeny
+    x2 = x_num1(x1,y1,z1) * y_denom1(x1,y1,z1)
+    y2 = y_num1(x1,y1,z1)*x_denom1(x1,y1,z1)
+    z2 = z1*x_denom1(x1,y1,z1)* y_denom1(x1,y1,z1)
+
 
 p = 1910157204347957325700187962480217512925138482090399484362397
 aboldhat=73275333332267847499581501376863252276520692179021512625126;
@@ -86,7 +90,7 @@ assert Q == eigen*P
 # endomorphism rational maps
 
 x_num0, x_denom0, y_num0, y_denom0 = projective_maps(phi0,Fp)
-
+x_num1, x_denom1, y_num1, y_denom1 = projective_maps(phi1,Fp)
 
 # GLV
 
@@ -100,3 +104,6 @@ n = ZZ.random_element(r)
 S1 = n*P
 S2 = fast_scalar_mul(n,P)
 assert S1 == S2
+
+
+end_composition(P)
