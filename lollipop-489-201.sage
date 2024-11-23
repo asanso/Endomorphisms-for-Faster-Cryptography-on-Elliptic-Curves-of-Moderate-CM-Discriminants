@@ -1,17 +1,5 @@
 import timeit
 
-def end_composition(P):
-    x0 = P[0]
-    y0 = P[1]
-    x1 = x_num0(x0)
-    y1 = y_num0(x0,y0)
-    x2 = x_num1(x1)
-    y2 = y_num1(x1,y1)
-    x3 = x_num2(x2)
-    y3 = y_num2(x2,y2)
-    x_fin = x_num_iso(x3)
-    y_fin = y_num_iso(x3,y3)
-
 def multi_scalar_mul(P, k1, endo, k2):
     return k1*P + k2*endo(P)
 
@@ -23,6 +11,23 @@ def fast_scalar_mul(n,P):
     #print(len(k1.str(2)))
     #print(len(k2.str(2)))
     return  multi_scalar_mul(P,k1, full_end, k2)
+
+
+def projective_maps(phi,Fp):
+    R.<X, Y, Z> = PolynomialRing(Fp, 3)  # Ring for projective coordinates
+    x_map, y_map = phi.rational_maps()  # Rational maps (x_map, y_map)
+    # Define x = X/Z and y = Y/Z in terms of projective coordinates
+    x_proj = X / Z
+    y_proj = Y / Z
+    # Rewrite the maps in projective coordinates
+    x_transformed = x_map(x_proj, y_proj) * Z  # Eliminate Z from denominator for x
+    y_transformed = y_map(x_proj, y_proj) * Z^2  # Eliminate Z from denominator for y
+    return  x_transformed.numerator(), x_transformed.denominator(),y_transformed.numerator(), y_transformed.denominator()
+
+def end_composition(P):
+    x0 = P[0]
+    y0 = P[1]
+    z0 = 1
 
 p = 1910157204347957325700187962480217512925138482090399484362397
 aboldhat=73275333332267847499581501376863252276520692179021512625126;
@@ -74,23 +79,8 @@ assert Q == eigen*P
 
 # endomorphism rational maps
 
-x_num0 = phi0.x_rational_map().numerator()
-x_num1 = phi1.x_rational_map().numerator()
-x_num2 = phi2.x_rational_map().numerator()
-x_num_iso = iso.x_rational_map().numerator()
+x_num0, x_denom0, y_num0, y_denom0 = projective_maps(phi0,Fp)
 
-x_denom0 = phi0.x_rational_map().denominator()
-x_denom1 = phi1.x_rational_map().denominator()
-x_denom2 = phi2.x_rational_map().denominator()
-
-y_num0 = phi0.rational_maps()[1].numerator()
-y_num1 = phi1.rational_maps()[1].numerator()
-y_num2 = phi2.rational_maps()[1].numerator()
-y_num_iso = iso.rational_maps()[1].numerator()
-
-y_denom0 = phi0.rational_maps()[1].denominator()
-y_denom1 = phi1.rational_maps()[1].denominator()
-y_denom2 = phi2.rational_maps()[1].denominator()
 
 # GLV
 
