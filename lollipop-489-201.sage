@@ -14,7 +14,7 @@ def fast_scalar_mul(n,P):
 
 
 def projective_maps(phi,Fp):
-    rX,sX = phi
+    rX,sXY = phi
     Fpx = Fp['x']
     x = Fpx.gen()
     FpX = Fpx.fraction_field()
@@ -42,9 +42,9 @@ def end_composition(P):
     y1 = y0 *b0(x0,z0)
     z1 = z0* c0(x0,z0)
     #2md isogeny
-    x2 = z1*a1(x0,z0)  
-    y2 = y1 *b1(x0,z0)
-    z2 = z1* c1(x0,z0)
+    x2 = z1*a1(x1,z1)  
+    y2 = y1 *b1(x1,z1)
+    z2 = z1* c1(x1,z1)
 
 p = 1910157204347957325700187962480217512925138482090399484362397
 aboldhat=73275333332267847499581501376863252276520692179021512625126;
