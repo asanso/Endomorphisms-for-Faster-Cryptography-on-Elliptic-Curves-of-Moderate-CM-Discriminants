@@ -41,10 +41,14 @@ def end_composition(P):
     x1 = z0*a0(x0,z0)  
     y1 = y0 *b0(x0,z0)
     z1 = z0* c0(x0,z0)
-    #2md isogeny
+    #2nd isogeny
     x2 = z1*a1(x1,z1)  
     y2 = y1 *b1(x1,z1)
     z2 = z1* c1(x1,z1)
+    #3rd isogeny
+    x3 = z2*a2(x2,z2)  
+    y3 = y2 *b2(x2,z2)
+    z3 = z2* c2(x2,z2)
 
 p = 1910157204347957325700187962480217512925138482090399484362397
 aboldhat=73275333332267847499581501376863252276520692179021512625126;
@@ -97,6 +101,7 @@ assert Q == eigen*P
 # endomorphism rational maps
 a0,b0,c0 = projective_maps(phi0,Fp)
 a1,b1,c1 = projective_maps(phi1,Fp)
+a2,b2,c2 = projective_maps(phi2,Fp)
 
 # GLV
 
