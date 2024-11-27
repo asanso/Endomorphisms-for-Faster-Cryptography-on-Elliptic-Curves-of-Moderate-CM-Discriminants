@@ -14,30 +14,37 @@ def fast_scalar_mul(n,P):
 
 
 def projective_maps(phi,Fp):
-    R.<X, Y, Z> = PolynomialRing(Fp, 3)  # Ring for projective coordinates
-    x_map, y_map = phi.rational_maps()  # Rational maps (x_map, y_map)
-    # Define x = X/Z and y = Y/Z in terms of projective coordinates
-    x_proj = X / Z
-    y_proj = Y / Z
-    # Rewrite the maps in projective coordinates
-    x_transformed = x_map(x_proj, y_proj) * Z  # Eliminate Z from denominator for x
-    y_transformed = y_map(x_proj, y_proj) * Z^2  # Eliminate Z from denominator for y
-    return  x_transformed.numerator(), x_transformed.denominator(),y_transformed.numerator(), y_transformed.denominator()
+    rX,sX = phi
+    Fpx = Fp['x']
+    x = Fpx.gen()
+    FpX = Fpx.fraction_field()
+    X = FpX.gen()
+    Fpxz = Fp['x', 'z']
+    FpXZ = FractionField(Fpxz)
+    X, Z = FpXZ.gens()
+    sX = sXY(y=1)
+    rXZ = rX(x=X/Z)
+    sXZ = sX(x=X/Z)
+    # (x:y:z) -> (z * a(x,z) : y * b(x,z) : z * c(x,z))
+    a = rXZ.numerator() * sXZ.denominator()
+    b = sXZ.numerator() * rXZ.denominator()
+    c = rXZ.denominator() * sXZ.denominator()
+    return a,b,c
+
 
 def end_composition(P):
     x0 = P[0]
     y0 = P[1]
-    z0 = 1
+    z0 = 1 
 
     #1st isogeny
-    x1 = x_num0(x0,y0,z0) * y_denom0(x0,y0,z0)
-    y1 = y_num0(x0,y0,z0)*x_denom0(x0,y0,z0)
-    z1 = x_denom0(x0,y0,z0)* y_denom0(x0,y0,z0)
+    x1 = z0*a0(x0,z0)  
+    y1 = y0 *b0(x0,z0)
+    z1 = z0* c0(x0,z0)
     #2md isogeny
-    x2 = x_num1(x1,y1,z1) * y_denom1(x1,y1,z1)
-    y2 = y_num1(x1,y1,z1)*x_denom1(x1,y1,z1)
-    z2 = z1*x_denom1(x1,y1,z1)* y_denom1(x1,y1,z1)
-
+    x2 = z1*a1(x0,z0)  
+    y2 = y1 *b1(x0,z0)
+    z2 = z1* c1(x0,z0)
 
 p = 1910157204347957325700187962480217512925138482090399484362397
 aboldhat=73275333332267847499581501376863252276520692179021512625126;
@@ -88,9 +95,8 @@ eigen = roots[1][0]
 assert Q == eigen*P
 
 # endomorphism rational maps
-
-x_num0, x_denom0, y_num0, y_denom0 = projective_maps(phi0,Fp)
-x_num1, x_denom1, y_num1, y_denom1 = projective_maps(phi1,Fp)
+a0,b0,c0 = projective_maps(phi0,Fp)
+a1,b1,c1 = projective_maps(phi1,Fp)
 
 # GLV
 
