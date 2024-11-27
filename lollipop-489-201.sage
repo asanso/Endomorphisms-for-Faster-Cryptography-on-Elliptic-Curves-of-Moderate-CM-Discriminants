@@ -50,6 +50,8 @@ def end_composition(P):
     y3 = y2 *b2(x2,z2)
     z3 = z2* c2(x2,z2)
 
+    
+
 p = 1910157204347957325700187962480217512925138482090399484362397
 aboldhat=73275333332267847499581501376863252276520692179021512625126;
 bboldhat=1538008641579097707704221968675032141849999412179326013460607;
@@ -103,6 +105,8 @@ assert Q == eigen*P
 a0,b0,c0 = projective_maps(phi0,Fp)
 a1,b1,c1 = projective_maps(phi1,Fp)
 a2,b2,c2 = projective_maps(phi2,Fp)
+isoX = iso.rational_maps()[0]
+isoY = iso.rational_maps()[1]
 
 # GLV
 M = Matrix([[int(-eigen),1], [int(r),0]])
