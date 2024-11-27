@@ -105,7 +105,6 @@ a1,b1,c1 = projective_maps(phi1,Fp)
 a2,b2,c2 = projective_maps(phi2,Fp)
 
 # GLV
-
 M = Matrix([[int(-eigen),1], [int(r),0]])
 #print(M)
 N = M.LLL()
@@ -116,6 +115,3 @@ n = ZZ.random_element(r)
 S1 = n*P
 S2 = fast_scalar_mul(n,P)
 assert S1 == S2
-
-
-end_composition(P)
