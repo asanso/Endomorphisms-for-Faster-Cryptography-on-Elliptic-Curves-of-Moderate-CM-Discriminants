@@ -81,10 +81,11 @@ assert E2.j_invariant() == H.roots()[0][0]
 phi2 = E2.isogenies_prime_degree(11)[4]
 assert phi2.codomain().j_invariant() == H.roots()[2][0]
 
-# Computing eigenvalue 
 end =(phi2*phi1*phi0)
 iso =end.codomain().isomorphism_to(E0)
 full_end = (iso*end)
+
+# Computing eigenvalue 
 trace = full_end.trace()
 norm = 11^3
 r = E0.order()
