@@ -25,5 +25,11 @@ assert R  == P.add(P)
 n = 5
 R = P.scalar_mul(n)
 assert R.on_curve()
-#P.scalar_mul(E.cofactor * E.r).is_zero()
-print(P.scalar_mul(E.cofactor * E.r))
+P.scalar_mul(E.cofactor * E.r).is_zero()
+
+
+# multi scalar mul
+#for [k1,k2] in [[12,13], [-12,13], [12,-13], [-12,-13]]:
+    #P1 = E.random_point()
+    #P2 = E.random_point()
+    #assert P1.scalar_mul(k1).add(P2.scalar_mul(k2)) == P1.multi_scalar_mul(k1,P2,k2)

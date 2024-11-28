@@ -64,7 +64,7 @@ class PointWeierstrass():
         if other.is_zero():
             return self
         if self.x == other.x and self.y != other.y:
-            return PointWeierstrass(0, 0, self.curve)  # Point at infinity
+            return PointWeierstrass(self.curve.Fp(0), self.curve.Fp(0), self.curve)  # Point at infinity
 
         if self == other:
             return self.double()
@@ -105,6 +105,32 @@ class PointWeierstrass():
             R = R.double()
             if b == 1:
                 R = R.add(P)
+        return R
+
+    def multi_scalar_mul(self, k1, other, k2):
+        P = self
+        if k1<0:
+            k1=-k1
+            P = P.neg()
+        if k2<0:
+            k2=-k2
+            other = other.neg()
+        PplusOther = P.add(other)
+        bits_k1 = ZZ(k1).bits()
+        bits_k2 = ZZ(k2).bits()
+        while len(bits_k1) < len(bits_k2):
+            bits_k1.append(0)
+        while len(bits_k2) < len(bits_k1):
+            bits_k2.append(0)
+        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(0), self.curve)
+        for i in range(len(bits_k1)-1,-1,-1):
+            R = R.double()
+            if bits_k1[i] == 1 and bits_k2[i] == 0:
+                R = R.add(self)
+            if bits_k1[i] == 0 and bits_k2[i] == 1:
+                R = R.add(other)
+            if bits_k1[i] == 1 and bits_k2[i] == 1:
+                R = R.add(PplusOther)
         return R
 
     def clear_cofactor(self):
