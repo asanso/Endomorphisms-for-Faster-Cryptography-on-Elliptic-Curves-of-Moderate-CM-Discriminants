@@ -100,7 +100,7 @@ class PointWeierstrass():
             P = self.neg()
         else:
             P = self
-        R = PointWeierstrass(0, 0, self.curve)  # Point at infinity
+        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(0), self.curve)  # Point at infinity
         for b in ZZ(n).bits():
             R = R.double()
             if b == 1:
