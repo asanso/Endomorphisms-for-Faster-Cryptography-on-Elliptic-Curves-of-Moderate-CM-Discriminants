@@ -19,17 +19,6 @@ P.scalar_mul(n)
 t = cputime(t)
 print("scalar multiplication:\t\t\t{:5.3f}ms".format(t))
 
-P1 = E.random_point()
-P2 = E.random_point()
-
-k1 = random.randint(0,r)
-k2 = random.randint(0,r)
-
-t = cputime()
-P.scalar_mul(n)
-t = cputime(t)
-print("scalar multiplication:\t\t\t{:5.3f}ms".format(t))
-
 t2 = cputime()
 P.fast_scalar_mul(n)
 t2 = cputime(t2)
