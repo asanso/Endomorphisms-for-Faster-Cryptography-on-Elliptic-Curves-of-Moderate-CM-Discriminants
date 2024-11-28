@@ -49,7 +49,7 @@ def end_composition(P):
     x3 = z2*a2(x2,z2)  
     y3 = y2 *b2(x2,z2)
     z3 = z2* c2(x2,z2)
-    return  isoX(x3,1), isoY(y3,1),z3
+    return  isoX(x3,1), isoY(1,y3),z3
     
 
 p = 1910157204347957325700187962480217512925138482090399484362397
@@ -108,11 +108,17 @@ a2,b2,c2 = projective_maps(phi2,Fp)
 isoX = iso.rational_maps()[0]
 isoY = iso.rational_maps()[1]
 
+x_end, y_end, z_end = end_composition(P)
+
+assert Q[0] == x_end/z_end
+assert Q[1] == y_end/z_end
+
 # GLV
 M = Matrix([[int(-eigen),1], [int(r),0]])
 #print(M)
 N = M.LLL()
 N_inv = N**-1
+
 
 n = ZZ.random_element(r)
 #print(len(n.str(2)))
