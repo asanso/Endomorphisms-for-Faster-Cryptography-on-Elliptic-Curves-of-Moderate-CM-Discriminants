@@ -135,8 +135,8 @@ x1_map,y1_map = phi1
 x2_map,y2_map = phi2
 x_end, y_end = end_composition_not_optimized(P)
 
-#assert Q[0] == x_end
-#assert Q[1] == y_end
+assert Q[0] == x_end
+assert Q[1] == y_end
 
 # GLV
 M = Matrix([[int(-eigen),1], [int(r),0]])
