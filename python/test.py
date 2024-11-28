@@ -13,5 +13,10 @@ Q = E.random_point()
 # add
 R = P.add(Q)
 assert R.on_curve()
-print(R)
 assert R == Q.add(P)
+
+# double
+print(P)
+print()
+R = P.double()
+assert R.on_curve()
