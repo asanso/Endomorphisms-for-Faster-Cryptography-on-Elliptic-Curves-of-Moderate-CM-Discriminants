@@ -26,17 +26,11 @@ k1 = random.randint(0,r)
 k2 = random.randint(0,r)
 
 t = cputime()
-P1.scalar_mul(k1).add(P2.scalar_mul(k2))
-t = cputime(t)
-print("2 scalar multiplications:\t\t\t{:5.3f}ms".format(t))
-
-t2 = cputime()
-P1.multi_scalar_mul(k1,P2,k2)
-t2 = cputime(t2)
-print('DSM:\t\t{:5.3f}ms ({:2.0f}% faster)'.format(t2, 100*(t-t2)/t2))
-
-
-t = cputime()
 P.scalar_mul(n)
 t = cputime(t)
 print("scalar multiplication:\t\t\t{:5.3f}ms".format(t))
+
+t2 = cputime()
+P.fast_scalar_mul(n)
+t2 = cputime(t2)
+print('GLV:\t\t{:5.3f}ms ({:2.0f}% faster)'.format(t2, 100*(t-t2)/t2))
