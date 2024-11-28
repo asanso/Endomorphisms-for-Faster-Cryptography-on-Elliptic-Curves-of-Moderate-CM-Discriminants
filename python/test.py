@@ -42,3 +42,5 @@ assert P.clear_cofactor().scalar_mul(E.r).is_zero()
 
 E = Lollipop489201(p, a, b, r, 1, eigen)
 P = E.random_point()
+
+P.psi()
