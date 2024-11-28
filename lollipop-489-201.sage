@@ -49,8 +49,22 @@ def end_composition(P):
     x3 = z2*a2(x2,z2)  
     y3 = y2 *b2(x2,z2)
     z3 = z2* c2(x2,z2)
-    return  isoX(x3,1), isoY(1,y3),z3
+    return  isoX(x3, y3), isoY(x3,y3), z3
     
+def end_composition_not_optimized(P):
+    x0 = P[0]
+    y0 = P[1]
+
+    #1st isogeny
+    x1 = x0_map(x0,y0) 
+    y1 = y0_map(x0,y0) 
+    #2nd isogeny
+    x2 = x1_map(x1,y1) 
+    y2 = y1_map(x1,y1) 
+    #3rd isogeny
+    x3 = x2_map(x2,y2) 
+    y3 = y2_map(x2,y2) 
+    return  isoX(x3, y3), isoY(x3,y3)
 
 p = 1910157204347957325700187962480217512925138482090399484362397
 aboldhat=73275333332267847499581501376863252276520692179021512625126;
@@ -112,6 +126,19 @@ x_end, y_end, z_end = end_composition(P)
 
 assert Q[0] == x_end/z_end
 assert Q[1] == y_end/z_end
+
+
+# endomorphism rational maps not optimized:
+
+x0_map,y0_map = phi0
+x1_map,y1_map = phi1
+x2_map,y2_map = phi2
+isoX = iso.rational_maps()[0]
+isoY = iso.rational_maps()[1]
+x_end, y_end = end_composition_not_optimized(P)
+
+#assert Q[0] == x_end
+#assert Q[1] == y_end
 
 # GLV
 M = Matrix([[int(-eigen),1], [int(r),0]])
