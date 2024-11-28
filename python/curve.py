@@ -95,13 +95,13 @@ class PointWeierstrass():
         return PointWeierstrass(x3, y3, self.curve)
 
     def scalar_mul(self, n):
-        if n < 0:
+        if n<0:
             n = -n
             P = self.neg()
         else:
             P = self
-        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(0), self.curve)  # Point at infinity
-        for b in ZZ(n).bits():
+        R = P
+        for b in ZZ(n).bits()[-2::-1]:
             R = R.double()
             if b == 1:
                 R = R.add(P)
