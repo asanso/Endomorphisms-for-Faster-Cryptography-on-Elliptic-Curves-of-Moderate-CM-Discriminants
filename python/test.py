@@ -16,7 +16,6 @@ assert R.on_curve()
 assert R == Q.add(P)
 
 # double
-print(P)
-print()
 R = P.double()
 assert R.on_curve()
+
