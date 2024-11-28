@@ -19,7 +19,6 @@ P.scalar_mul(n)
 t = cputime(t)
 print("scalar multiplication:\t\t\t{:5.3f}ms".format(t))
 
-
 P1 = E.random_point()
 P2 = E.random_point()
 
@@ -30,7 +29,6 @@ t = cputime()
 P1.scalar_mul(k1).add(P2.scalar_mul(k2))
 t = cputime(t)
 print("2 scalar multiplications:\t\t\t{:5.3f}ms".format(t))
-
 
 t2 = cputime()
 P1.multi_scalar_mul(k1,P2,k2)
