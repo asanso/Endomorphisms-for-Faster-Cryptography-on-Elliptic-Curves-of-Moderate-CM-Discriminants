@@ -18,7 +18,7 @@ class  Lollipop489201(WeierstrassCurve):
             self.N = M.LLL()
             self.N_inv = self.N**-1
 
-class Lollipop489201(PointWeierstrass):
+class Lollipop489201Point(PointWeierstrass):
       
         def fast_scalar_mul(self, n):
             psiP = self.psi()
