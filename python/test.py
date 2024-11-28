@@ -23,7 +23,6 @@ R = P.double()
 assert R.on_curve()
 assert R  == P.add(P)
 
-
 # scalar mul
 n = random.randint(0,r)
 R = P.scalar_mul(n)
