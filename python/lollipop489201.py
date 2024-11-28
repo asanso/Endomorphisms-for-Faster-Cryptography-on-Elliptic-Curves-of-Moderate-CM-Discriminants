@@ -10,6 +10,8 @@ class  Lollipop489201(WeierstrassCurve):
 
     def __init__(self, p, a, b, r, cofactor,L):
         super().__init__(p, a,b, r, cofactor)
+        self.a = a
+        self.b = b
         self.D = -547
         self.L = L
         self.cofactor = cofactor
