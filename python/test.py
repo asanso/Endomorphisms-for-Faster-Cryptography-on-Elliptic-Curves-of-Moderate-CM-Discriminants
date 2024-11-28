@@ -25,3 +25,5 @@ assert R  == P.add(P)
 n = 5
 R = P.scalar_mul(n)
 assert R.on_curve()
+#P.scalar_mul(E.cofactor * E.r).is_zero()
+print(P.scalar_mul(E.cofactor * E.r))
