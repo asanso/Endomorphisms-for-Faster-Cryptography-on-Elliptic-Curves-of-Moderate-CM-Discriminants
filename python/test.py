@@ -18,6 +18,8 @@ assert R == Q.add(P)
 # double
 R = P.double()
 assert R.on_curve()
+assert R  == P.add(P)
+
 
 # scalar mul
 n = 5
