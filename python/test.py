@@ -29,7 +29,7 @@ P.scalar_mul(E.cofactor * E.r).is_zero()
 
 
 # multi scalar mul
-#for [k1,k2] in [[12,13], [-12,13], [12,-13], [-12,-13]]:
-    #P1 = E.random_point()
-    #P2 = E.random_point()
-    #assert P1.scalar_mul(k1).add(P2.scalar_mul(k2)) == P1.multi_scalar_mul(k1,P2,k2)
+for [k1,k2] in [[12,13], [-12,13], [12,-13], [-12,-13]]:
+    P1 = E.random_point()
+    P2 = E.random_point()
+    assert P1.scalar_mul(k1).add(P2.scalar_mul(k2)) == P1.multi_scalar_mul(k1,P2,k2)
