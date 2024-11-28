@@ -1,4 +1,4 @@
-from sage.all import ZZ, Matrix, FiniteField, vector
+from sage.all import ZZ, FiniteField
 class WeierstrassCurve():
     def __init__(self, p, a, b, r, cofactor):
         self.p = p
