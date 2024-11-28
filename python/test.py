@@ -1,7 +1,17 @@
 import random
-from curve import Curve
-from bandersnatch import Bandersnatch, BandersnatchPoint
+from curve import WeierstrassCurve
 
-###
-# tests for the Curve class on the Jubjub curve
-###
+p = 1910157204347957325700187962480217512925138482090399484362397
+a=73275333332267847499581501376863252276520692179021512625126;
+b=1538008641579097707704221968675032141849999412179326013460607;
+r = 1910157204347957325700187962477453761504460135807772883063193
+E = WeierstrassCurve(p, a, b, r, 1)
+
+P = E.random_point()
+Q = E.random_point()
+
+# add
+R = P.add(Q)
+assert R.on_curve()
+print(R)
+assert R == Q.add(P)

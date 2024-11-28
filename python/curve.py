@@ -1,20 +1,4 @@
 from sage.all import ZZ, Matrix, FiniteField, vector
-
-def base64FieldInt(a, hex_flag=False):
-    a = ZZ(a)
-    a1 = a % (2**64)
-    a = a >> 64
-    a2 = a % (2**64)
-    a = a >> 64
-    a3 = a % (2**64)
-    a = a >> 64
-    a4 = a % (2**64)
-    if hex_flag:
-        return '[' + str(hex(a1)) + ',' + str(hex(a2)) + ',' + str(hex(a3)) \
-            + ',' + str(hex(a4)) + ']'
-    else:
-        return '[' + str(a1) + ',' + str(a2) + ',' + str(a3) + ',' + str(a4) + ']'
-
 class WeierstrassCurve():
     def __init__(self, p, a, b, r, cofactor):
         self.p = p
@@ -53,8 +37,15 @@ class PointWeierstrass():
         self.curve = curve
 
     def __str__(self):
-        return 'x:' + base64FieldInt(self.x, True) + '\n' + \
-            'y:' + base64FieldInt(self.y, True)
+        return 'x:' + str(self.x) + '\n' + \
+            'y:' + str(self.y)
+
+    def __eq__(self, other):
+        if self.is_zero() and other.is_zero():
+            return True  # Both are the point at infinity
+        if self.is_zero() or other.is_zero():
+            return False  # One is infinity, the other is not
+        return self.x == other.x and self.y == other.y
 
     def is_zero(self):
         return self.y.is_zero() and self.x.is_zero()
