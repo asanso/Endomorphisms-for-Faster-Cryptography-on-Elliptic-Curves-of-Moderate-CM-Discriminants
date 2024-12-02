@@ -65,11 +65,11 @@ def end_composition_optimized(P):
     z1 = z0*c0(x0,z0)
     #2nd isogeny
     x2 = a1(x1,z1)  
-    y2 = z1*y1 *b1(x1,z1)
+    y2 = y1 *b1(x1,z1)
     z2 = z1*c1(x1,z1)
     #3rd isogeny
     x3 = a2(x2,z2)  
-    y3 = z2*y2 *b2(x2,z2)
+    y3 = y2 *b2(x2,z2)
     z3 = z2*c2(x2,z2)
     return  isoX(x3, y3), isoY(x3,y3), z3
 
@@ -165,8 +165,8 @@ isoY = iso.rational_maps()[1]
 
 x_end, y_end, z_end = end_composition_optimized(P)
 
-#assert Q[0] == x_end/z_end
-#assert Q[1] == y_end/z_end
+assert Q[0] == x_end/z_end
+assert Q[1] == y_end/z_end
 
 
 # endomorphism rational maps not optimized:
