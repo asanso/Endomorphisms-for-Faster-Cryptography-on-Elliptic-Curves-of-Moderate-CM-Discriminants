@@ -55,6 +55,25 @@ def projective_maps(phi,Fp):
     return a,b,c
 
 
+def end_composition_optimized(P):
+    x0 = P[0]
+    y0 = P[1]
+    z0 = 1 
+
+    #1st isogeny
+    x1 = a0(x0,z0)  
+    y1 = z0*y0 *b0(x0,z0)
+    z1 = z0*c0(x0,z0)
+    #2nd isogeny
+    x2 = a1(x1,z1)  
+    y2 = z1*y1 *b1(x1,z1)
+    z2 = z1*c1(x1,z1)
+    #3rd isogeny
+    x3 = a2(x2,z2)  
+    y3 = z2*y2 *b2(x2,z2)
+    z3 = z2*c2(x2,z2)
+    return  isoX(x3, y3), isoY(x3,y3), z3
+
 def end_composition(P):
     x0 = P[0]
     y0 = P[1]
@@ -139,13 +158,13 @@ eigen = roots[1][0]
 assert Q == eigen*P
 
 # endomorphism rational maps
-a0,b0,c0 = projective_maps(phi0,Fp)
-a1,b1,c1 = projective_maps(phi1,Fp)
-a2,b2,c2 = projective_maps(phi2,Fp)
+a0,b0,c0 = projective_maps_optimized(phi0,Fp)
+a1,b1,c1 = projective_maps_optimized(phi1,Fp)
+a2,b2,c2 = projective_maps_optimized(phi2,Fp)
 isoX = iso.rational_maps()[0]
 isoY = iso.rational_maps()[1]
 
-x_end, y_end, z_end = end_composition(P)
+x_end, y_end, z_end = end_composition_optimized(P)
 
 assert Q[0] == x_end/z_end
 assert Q[1] == y_end/z_end
