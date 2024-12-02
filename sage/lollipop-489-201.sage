@@ -12,6 +12,29 @@ def fast_scalar_mul(n,P):
     #print(len(k2.str(2)))
     return  multi_scalar_mul(P,k1, full_end, k2)
 
+def projective_maps_optimized(phi,Fp):
+    rX,sXY = phi
+
+    Fpx = Fp['x']
+    x = Fpx.gen()
+    FpX = Fpx.fraction_field()
+    X = FpX.gen()
+    Fpxz = Fp['x', 'z']
+    FpXZ = FractionField(Fpxz)
+    X, Z = FpXZ.gens()
+    
+    psi1 = rX.numerator()
+    psi3 = rX.denominator().sqrt()
+    sX = sXY(y=1)
+    assert psi3^3 == sX.denominator()
+    psi2 = sX.numerator() 
+    psi1XZ = psi1(x=X/Z)
+    psi2XZ = psi2(x=X/Z)
+    psi3XZ = psi3(x=X/Z)
+    a = psi1XZ*psi3XZ *Z^16
+    b = psi2XZ *Z^15
+    c = psi3XZ^3 *Z^15  
+    return a,b,c
 
 def projective_maps(phi,Fp):
     rX,sXY = phi
