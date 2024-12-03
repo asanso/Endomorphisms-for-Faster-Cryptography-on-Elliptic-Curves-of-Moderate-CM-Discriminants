@@ -44,6 +44,9 @@ class  Lollipop489201(WeierstrassCurve):
        
 class Lollipop489201Point(PointWeierstrass):
       
+        def __init__(self, x, y, z, curve):
+            super().__init__(x, y, z, curve)
+
         def fast_scalar_mul(self, n):
             psiP = self.psi()
             beta = vector([n,0]) * self.curve.N_inv
@@ -66,4 +69,4 @@ class Lollipop489201Point(PointWeierstrass):
             x3 = self.curve.a2_map(x2,z2) 
             y3 =  y2* self.curve.b2_map(x2,z2) 
             z3 =  z2* self.curve.c2_map(x2,z2) 
-            return Lollipop489201Point( self.curve.iso_x*x3,  self.curve.iso_y*y3, z3, self)
+            return Lollipop489201Point( self.curve.iso_x*x3,  self.curve.iso_y*y3, z3, self.curve)
