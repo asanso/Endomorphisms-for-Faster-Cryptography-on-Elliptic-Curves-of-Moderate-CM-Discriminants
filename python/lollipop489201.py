@@ -53,14 +53,17 @@ class Lollipop489201Point(PointWeierstrass):
             return self.multi_scalar_mul(k1, psiP, k2)
 
         def psi(self):
-            x0,y0 = self.x, self.y
+            x0,y0,z0 = self.X, self.Y, self.Z
             #1st isogeny
-            x1 = self.curve.x0_map(x0,y0) 
-            y1 =  self.curve.y0_map(x0,y0) 
+            x1 = self.curve.a0_map(x0,z0) 
+            y1 =  y0* self.curve.b0_map(x0,z0) 
+            z1 =  z0* self.curve.c0_map(x0,z0) 
             #2nd isogeny
-            x2 =  self.curve.x1_map(x1,y1) 
-            y2 =  self.curve.y1_map(x1,y1) 
+            x2 = self.curve.a1_map(x1,z1) 
+            y2 =  y1* self.curve.b1_map(x1,z1) 
+            z2 =  z1* self.curve.c1_map(x1,z1) 
             #3rd isogeny
-            x3 =  self.curve.x2_map(x2,y2) 
-            y3 =  self.curve.y2_map(x2,y2) 
-            return  Lollipop489201Point( self.curve.iso_x(x3, y3),  self.curve.iso_y(x3,y3), self)
+            x3 = self.curve.a2_map(x2,z2) 
+            y3 =  y2* self.curve.b2_map(x2,z2) 
+            z3 =  z2* self.curve.c2_map(x2,z2) 
+            return  Lollipop489201Point( self.curve.iso_x*x3,  self.curve.iso_y*y3, z3, self)
