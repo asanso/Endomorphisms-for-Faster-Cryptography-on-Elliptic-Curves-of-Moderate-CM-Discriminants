@@ -56,4 +56,4 @@ class Lollipop489201Point(PointWeierstrass):
             #3rd isogeny
             x3 =  self.curve.x2_map(x2,y2) 
             y3 =  self.curve.y2_map(x2,y2) 
-            return  Lollipop489201Point( self.curve.iso_x(x3, y3),  self.curve.iso_y(x3,y3), self)
+            return  Lollipop489201Point( self.curve.iso_x(x3, y3),  self.curve.iso_y(x3,y3), self.curve)
