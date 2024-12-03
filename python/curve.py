@@ -46,6 +46,7 @@ class PointWeierstrass():
             return "Point at infinity"
         x = self.X 
         y = self.Y
+        z = self.Z
         return f"x:{x}\ny:{y}\nz:{z}"
 
     def __eq__(self, other):
