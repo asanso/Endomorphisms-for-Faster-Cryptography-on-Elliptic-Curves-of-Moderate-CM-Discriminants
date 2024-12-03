@@ -44,9 +44,9 @@ class PointWeierstrass():
     def __str__(self):
         if self.is_zero():
             return "Point at infinity"
-        x = self.X / self.Z
-        y = self.Y / self.Z
-        return f"x:{x}\ny:{y}"
+        x = self.X 
+        y = self.Y
+        return f"x:{x}\ny:{y}\nz:{z}"
 
     def __eq__(self, other):
         if self.is_zero() and other.is_zero():
