@@ -31,3 +31,7 @@ P.scalar_mul(E.cofactor * E.r).is_zero()
 
 # clear cofactor
 assert P.clear_cofactor().scalar_mul(E.r).is_zero()
+
+E = Lollipop489201(p, a, b, r, 1, eigen)
+P = E.random_point()
+R1 = P.scalar_mul(n)

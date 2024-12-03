@@ -33,7 +33,7 @@ class  Lollipop489201(WeierstrassCurve):
         
     def random_point(self):
         P = super().random_point()
-        return Lollipop489201Point(P.x, P.y, self)
+        return Lollipop489201Point(P.X, P.Y,P.Z, self)
        
 class Lollipop489201Point(PointWeierstrass):
       
