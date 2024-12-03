@@ -61,7 +61,7 @@ def end_composition_optimized(P):
 
     #1st isogeny
     x1 = a0(x0,z0)  
-    y1 = z0*y0 *b0(x0,z0)
+    y1 = y0 *b0(x0,z0)
     z1 = z0*c0(x0,z0)
     #2nd isogeny
     x2 = a1(x1,z1)  
