@@ -22,10 +22,10 @@ class WeierstrassCurve():
             x = self.Fp.random_element()
             rhs = x**3 + self.a * x + self.b
         y = rhs.sqrt()
-        z = self.Fp.random_element()
+        z = self.Fp.random_element()  # Random projective coordinate
         x *= z
         y *= z
-        return PointWeierstrass(x, y, z,self)
+        return PointWeierstrass(x, y, z, self)
 
     def point_of_order_r(self):
         P = self.random_point().clear_cofactor()
@@ -34,26 +34,24 @@ class WeierstrassCurve():
         assert P.scalar_mul(self.r).is_zero()
         return P
 
+
 class PointWeierstrass():
     def __init__(self, X, Y, Z, curve):
-        self.X = X
-        self.Y = Y
-        self.Z = Z
+        self.X = X  # Projective coordinate X
+        self.Y = Y  # Projective coordinate Y
+        self.Z = Z  # Projective coordinate Z
         self.curve = curve
 
     def __str__(self):
         if self.is_zero():
             return "Point at infinity"
-        x = self.X 
-        y = self.Y
-        z = self.Z
-        return f"x:{x}\ny:{y}\nz:{z}"
+        return f"x:{self.X / self.Z}\ny:{self.Y / self.Z}\nz:{self.Z}"
 
     def __eq__(self, other):
         if self.is_zero() and other.is_zero():
-            return True  # Both are the point at infinity
+            return True
         if self.is_zero() or other.is_zero():
-            return False  # One is infinity, the other is not
+            return False
         return self.X * other.Z == other.X * self.Z and self.Y * other.Z == other.Y * self.Z
 
     def is_zero(self):
@@ -129,6 +127,32 @@ class PointWeierstrass():
             R = R.double()
             if b == 1:
                 R = R.add(P)
+        return R
+
+    def multi_scalar_mul(self, k1, other, k2):
+        P = self
+        if k1 < 0:
+            k1 = -k1
+            P = P.neg()
+        if k2 < 0:
+            k2 = -k2
+            other = other.neg()
+        PplusOther = P.add(other)
+        bits_k1 = ZZ(k1).bits()
+        bits_k2 = ZZ(k2).bits()
+        while len(bits_k1) < len(bits_k2):
+            bits_k1.append(0)
+        while len(bits_k2) < len(bits_k1):
+            bits_k2.append(0)
+        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)  # Point at infinity
+        for i in range(len(bits_k1) - 1, -1, -1):
+            R = R.double()
+            if bits_k1[i] == 1 and bits_k2[i] == 0:
+                R = R.add(self)
+            if bits_k1[i] == 0 and bits_k2[i] == 1:
+                R = R.add(other)
+            if bits_k1[i] == 1 and bits_k2[i] == 1:
+                R = R.add(PplusOther)
         return R
 
     def clear_cofactor(self):
