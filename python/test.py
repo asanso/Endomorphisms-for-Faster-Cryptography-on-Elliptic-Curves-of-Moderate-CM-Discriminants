@@ -42,4 +42,4 @@ E = Lollipop489201(p, a, b, r, 1, eigen)
 P = E.random_point()
 R1 = P.scalar_mul(n)
 
-print(P.psi())
+print(P.psi().on_curve())
