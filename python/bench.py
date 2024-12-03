@@ -12,10 +12,11 @@ eigen = 500517855408530850485984845457693413895246088040882972578379
 E = Lollipop489201(p, a, b, r, 1, eigen)
 P = E.random_point()
 n = random.randint(0,r)
+l = 101
 
 t = cputime()
 for i in range(1000):
-    P.scalar_mul(2**101)
+    P.scalar_mul(2**l)
 t = cputime(t)
 print("scalar multiplication:\t\t\t{:5.3f}ms".format(t))
 
