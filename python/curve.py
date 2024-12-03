@@ -22,7 +22,10 @@ class WeierstrassCurve():
             x = self.Fp.random_element()
             rhs = x**3 + self.a * x + self.b
         y = rhs.sqrt()
-        return PointWeierstrass(x, y, self.Fp(1),self)
+        z = self.Fp.random_element()
+        x *= z
+        y *= z
+        return PointWeierstrass(x, y, z,self)
 
     def point_of_order_r(self):
         P = self.random_point().clear_cofactor()
