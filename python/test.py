@@ -41,3 +41,5 @@ for [k1,k2] in [[12,13], [-12,13], [12,-13], [-12,-13]]:
 E = Lollipop489201(p, a, b, r, 1, eigen)
 P = E.random_point()
 R1 = P.scalar_mul(n)
+R2 = P.fast_scalar_mul(n)
+assert R1 == R2
