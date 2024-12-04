@@ -117,17 +117,33 @@ class PointWeierstrass():
         return PointWeierstrass(X3, Y3, Z3, self.curve)
 
     def scalar_mul(self, n):
+        """
+        Perform scalar multiplication using the double-and-add method.
+        Handles negative scalars by negating the point.
+        """
+        if n == 0 or self.is_zero():
+            # Multiplying by 0 or starting with the point at infinity
+            return PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)  # Point at infinity
+        
         if n < 0:
+            # Handle negative scalars by negating the point
             n = -n
             P = self.neg()
         else:
             P = self
-        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)  # Point at infinity
-        for b in ZZ(n).bits()[-2::-1]:
-            R = R.double()
-            if b == 1:
+
+        # Initialize result as the point at infinity
+        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)
+
+        # Perform the double-and-add algorithm
+        while n > 0:
+            if n & 1:  # If the current bit is 1
                 R = R.add(P)
+            P = P.double()  # Always double the point
+            n >>= 1  # Shift to the next bit
+
         return R
+
 
     def multi_scalar_mul(self, k1, other, k2):
         P = self
