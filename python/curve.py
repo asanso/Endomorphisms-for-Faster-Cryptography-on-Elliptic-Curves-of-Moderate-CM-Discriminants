@@ -1,4 +1,5 @@
 from sage.all import ZZ, FiniteField
+
 class WeierstrassCurve():
     def __init__(self, p, a, b, r, cofactor):
         self.p = p
@@ -21,7 +22,10 @@ class WeierstrassCurve():
             x = self.Fp.random_element()
             rhs = x**3 + self.a * x + self.b
         y = rhs.sqrt()
-        return PointWeierstrass(x, y, self)
+        z = self.Fp.random_element()  # Random projective coordinate
+        x *= z
+        y *= z
+        return PointWeierstrass(x, y, z, self)
 
     def point_of_order_r(self):
         P = self.random_point().clear_cofactor()
@@ -30,90 +34,124 @@ class WeierstrassCurve():
         assert P.scalar_mul(self.r).is_zero()
         return P
 
+
 class PointWeierstrass():
-    def __init__(self, x, y, curve):
-        self.x = x
-        self.y = y
+    def __init__(self, X, Y, Z, curve):
+        self.X = X  # Projective coordinate X
+        self.Y = Y  # Projective coordinate Y
+        self.Z = Z  # Projective coordinate Z
         self.curve = curve
 
     def __str__(self):
-        return 'x:' + str(self.x) + '\n' + \
-            'y:' + str(self.y)
+        if self.is_zero():
+            return "Point at infinity"
+        return f"x:{self.X / self.Z}\ny:{self.Y / self.Z}\nz:{self.Z}"
 
     def __eq__(self, other):
         if self.is_zero() and other.is_zero():
-            return True  # Both are the point at infinity
+            return True
         if self.is_zero() or other.is_zero():
-            return False  # One is infinity, the other is not
-        return self.x == other.x and self.y == other.y
+            return False
+        return self.X * other.Z == other.X * self.Z and self.Y * other.Z == other.Y * self.Z
 
     def is_zero(self):
-        return self.y.is_zero() and self.x.is_zero()
+        return self.Z.is_zero()
 
     def neg(self):
-        return PointWeierstrass(self.x, -self.y, self.curve)
+        return PointWeierstrass(self.X, -self.Y, self.Z, self.curve)
 
     def on_curve(self):
-        x, y = self.x, self.y
+        X, Y, Z = self.X, self.Y, self.Z
         a, b = self.curve.a, self.curve.b
-        return y**2 == x**3 + a*x + b
+        return Y**2 * Z == X**3 + a * X * Z**2 + b * Z**3
 
     def add(self, other):
         if self.is_zero():
             return other
         if other.is_zero():
             return self
-        if self.x == other.x and self.y != other.y:
-            return PointWeierstrass(self.curve.Fp(0), self.curve.Fp(0), self.curve)  # Point at infinity
+        if self.X * other.Z == other.X * self.Z and self.Y * other.Z == -other.Y * self.Z:
+            return PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)  # Point at infinity
 
-        if self == other:
-            return self.double()
+        X1, Y1, Z1 = self.X, self.Y, self.Z
+        X2, Y2, Z2 = other.X, other.Y, other.Z
 
-        x1, y1 = self.x, self.y
-        x2, y2 = other.x, other.y
-        p = self.curve.p
+        # Projective point addition formulas
+        U1 = Y2 * Z1
+        U2 = Y1 * Z2
+        V1 = X2 * Z1
+        V2 = X1 * Z2
 
-        # Compute the slope
-        m = (y2 - y1) / (x2 - x1)
-        x3 = m**2 - x1 - x2
-        y3 = m * (x1 - x3) - y1
+        if V1 == V2:
+            if U1 == U2:
+                return self.double()  # Same point
+            else:
+                return PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)  # Point at infinity
 
-        return PointWeierstrass(x3, y3, self.curve)
+        U = U1 - U2
+        V = V1 - V2
+        W = Z1 * Z2
+        A = U**2 * W - V**3 - 2 * V**2 * V2
+        X3 = V * A
+        Y3 = U * (V**2 * V2 - A) - V**3 * U2
+        Z3 = V**3 * W
+
+        return PointWeierstrass(X3, Y3, Z3, self.curve)
 
     def double(self):
         if self.is_zero():
             return self
 
-        x, y = self.x, self.y
+        X, Y, Z = self.X, self.Y, self.Z
         a = self.curve.a
 
-        # Compute the slope for doubling
-        m = (3 * x**2 + a) / (2 * y)
-        x3 = m**2 - 2 * x
-        y3 = m * (x - x3) - y
+        # Projective point doubling formulas
+        W = 3 * X**2 + a * Z**2
+        S = Y * Z
+        B = X * Y * S
+        H = W**2 - 8 * B
+        X3 = 2 * H * S
+        Y3 = W * (4 * B - H) - 8 * Y**2 * S**2
+        Z3 = 8 * S**3
 
-        return PointWeierstrass(x3, y3, self.curve)
+        return PointWeierstrass(X3, Y3, Z3, self.curve)
 
     def scalar_mul(self, n):
-        if n<0:
+        """
+        Perform scalar multiplication using the double-and-add method.
+        Handles negative scalars by negating the point.
+        """
+        if n == 0 or self.is_zero():
+            # Multiplying by 0 or starting with the point at infinity
+            return PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)  # Point at infinity
+        
+        if n < 0:
+            # Handle negative scalars by negating the point
             n = -n
             P = self.neg()
         else:
             P = self
-        R = P
-        for b in ZZ(n).bits()[-2::-1]:
-            R = R.double()
-            if b == 1:
+
+        # Initialize result as the point at infinity
+        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)
+
+        # Perform the double-and-add algorithm
+        while n > 0:
+            if n & 1:  # If the current bit is 1
                 R = R.add(P)
+            P = P.double()  # Always double the point
+            n >>= 1  # Shift to the next bit
+
         return R
+
 
     def multi_scalar_mul(self, k1, other, k2):
         P = self
-        if k1<0:
-            k1=-k1
+        if k1 < 0:
+            k1 = -k1
             P = P.neg()
-        if k2<0:
-            k2=-k2
+        if k2 < 0:
+            k2 = -k2
             other = other.neg()
         PplusOther = P.add(other)
         bits_k1 = ZZ(k1).bits()
@@ -122,8 +160,8 @@ class PointWeierstrass():
             bits_k1.append(0)
         while len(bits_k2) < len(bits_k1):
             bits_k2.append(0)
-        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(0), self.curve)
-        for i in range(len(bits_k1)-1,-1,-1):
+        R = PointWeierstrass(self.curve.Fp(0), self.curve.Fp(1), self.curve.Fp(0), self.curve)  # Point at infinity
+        for i in range(len(bits_k1) - 1, -1, -1):
             R = R.double()
             if bits_k1[i] == 1 and bits_k2[i] == 0:
                 R = R.add(self)
