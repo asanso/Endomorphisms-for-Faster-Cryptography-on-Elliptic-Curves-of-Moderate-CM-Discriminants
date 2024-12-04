@@ -27,15 +27,14 @@ t2 = cputime(t2)
 print('endomorphism:\t\t{:5.3f}ms ({:2.0f}% faster)'.format(t2, 100*(t-t2)/t2))
 
 print()
-
 t = cputime()
 for i in range(1000):
-    P.scalar_mul(2**l)
+    P.scalar_mul(n)
 t = cputime(t)
 print("scalar multiplication:\t\t\t{:5.3f}ms".format(t))
 
 t2 = cputime()
 for i in range(1000):
-    P.psi()
+    P.fast_scalar_mul(n)
 t2 = cputime(t2)
-print('endomorphism:\t\t{:5.3f}ms ({:2.0f}% faster)'.format(t2, 100*(t-t2)/t2))
+print('GLV:\t\t{:5.3f}ms ({:2.0f}% faster)'.format(t2, 100*(t-t2)/t2))
