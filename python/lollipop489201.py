@@ -66,6 +66,7 @@ class Lollipop489201Point(PointWeierstrass):
             y2 =  y1* self.curve.b1_map(x1,z1) 
             z2 =  z1* self.curve.c1_map(x1,z1) 
             #3rd isogeny
+
             x3 = self.curve.a2_map(x2,z2) 
             y3 =  y2* self.curve.b2_map(x2,z2) 
             z3 =  z2* self.curve.c2_map(x2,z2) 
