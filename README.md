@@ -1,5 +1,6 @@
-# Beyond GLV
+### Usage
 
-## Resources
-
-[Cycles in the supersingular ℓ-isogeny graph and corresponding endomorphisms](https://arxiv.org/abs/1804.04063)
+```shell
+cd python
+sage -python bench.py 
+```
