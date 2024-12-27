@@ -1,3 +1,26 @@
+def projective_maps_optimized(phi,Fp):
+    rX,sXY = phi
+    Fpx = Fp['x']
+    x = Fpx.gen()
+    FpX = Fpx.fraction_field()
+    X = FpX.gen()
+    Fpxz = Fp['x', 'z']
+    FpXZ = FractionField(Fpxz)
+    X, Z = FpXZ.gens()
+    
+    psi1 = rX.numerator()
+    psi3 = -rX.denominator().sqrt()
+    sX = sXY(y=1)
+    assert psi3^3 == (sX.denominator()/2176782336)
+    psi2 = sX.numerator() 
+    psi1XZ = psi1(x=X/Z)
+    psi2XZ = psi2(x=X/Z)
+    psi3XZ = psi3(x=X/Z)
+    a = psi1XZ*psi3XZ *Z^16
+    b = psi2XZ *Z^15
+    c = psi3XZ^3 *Z^15  
+    return a,b,c
+
 p = 2^255 +3225
 a =  p -3
 b = 28091019353058090096996979000309560759124368558014865957655842872397301267595
@@ -78,3 +101,5 @@ n = ZZ.random_element(r)
 S1 = n*P
 S2 = fast_scalar_mul(n,P)
 assert S1 == S2
+
+a0,b0,c0 = projective_maps_optimized(phi0,Fp)
