@@ -21,6 +21,26 @@ def projective_maps_optimized(phi,Fp):
     c = psi3XZ^3 *Z^6
     return a,b,c
 
+
+def end_composition_optimized(P):
+    x0 = P[0]
+    y0 = P[1]
+    z0 = 1 
+
+    #1st isogeny
+    x1 = a0(x0,z0)  
+    y1 = y0 *b0(x0,z0)
+    z1 = z0*c0(x0,z0)
+    #2nd isogeny
+    x2 = a1(x1,z1)  
+    y2 = y1 *b1(x1,z1)
+    z2 = z1*c1(x1,z1)
+    #3rd isogeny
+    x3 = a2(x2,z2)  
+    y3 = y2 *b2(x2,z2)
+    z3 = z2*c2(x2,z2)
+    return  isoX(x3, y3), isoY(x3,y3), z3
+
 p = 2^255 +3225
 a =  p -3
 b = 28091019353058090096996979000309560759124368558014865957655842872397301267595
@@ -107,3 +127,11 @@ a1,b1,c1 = projective_maps_optimized(phi1,Fp)
 a2,b2,c2 = projective_maps_optimized(phi2,Fp)
 a3,b3,c3 = projective_maps_optimized(phi3,Fp)
 a4,b4,c4 = projective_maps_optimized(phi4,Fp)
+
+isoX = iso.rational_maps()[0]
+isoY = iso.rational_maps()[1]
+
+x_end, y_end, z_end = end_composition_optimized(P)
+
+assert Q[0] == x_end/z_end
+#assert Q[1] == y_end/z_end
