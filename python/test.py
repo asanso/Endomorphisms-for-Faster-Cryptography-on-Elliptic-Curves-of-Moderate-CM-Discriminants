@@ -86,8 +86,8 @@ for [k1,k2] in [[12,13], [-12,13], [12,-13], [-12,-13]]:
     P2 = E.random_point()
     assert P1.scalar_mul(k1).add(P2.scalar_mul(k2)) == P1.multi_scalar_mul(k1,P2,k2)
 
-#E = Lollipop489201(p, a, b, r, 1, eigen)
-#P = E.random_point()
-#R1 = P.scalar_mul(n)
-#R2 = P.fast_scalar_mul(n)
-#assert R1 == R2
+E = GC256C(p, a, b, r, 1, eigen)
+P = E.random_point()
+R1 = P.scalar_mul(n)
+R2 = P.fast_scalar_mul(n)
+assert R1 == R2
