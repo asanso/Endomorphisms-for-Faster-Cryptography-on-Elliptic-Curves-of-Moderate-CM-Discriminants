@@ -16,9 +16,9 @@ def projective_maps_optimized(phi,Fp):
     psi1XZ = psi1(x=X/Z)
     psi2XZ = psi2(x=X/Z)
     psi3XZ = psi3(x=X/Z)
-    a = psi1XZ*psi3XZ *Z^7
-    b = psi2XZ *Z^6
-    c = psi3XZ^3 *Z^6
+    a = psi1XZ*psi3XZ *Z^7*2176782336
+    b = psi2XZ *Z^6*2176782336
+    c = psi3XZ^3 *Z^6*2176782336
     return a,b,c
 
 
