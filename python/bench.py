@@ -2,7 +2,11 @@ import random
 from sage.misc.misc import cputime
 from lollipop489201 import Lollipop489201
 from gc256c import GC256C
+from util import *
+
 # Lollipop489201
+
+print_info("Lollipop489201")
 
 p = 1910157204347957325700187962480217512925138482090399484362397
 a=73275333332267847499581501376863252276520692179021512625126;
@@ -41,6 +45,7 @@ t2 = cputime(t2)
 print('GLV:\t\t{:5.3f}ms ({:2.0f}% faster)'.format(t2, 100*(t-t2)/t2))
 
 #GC256C
+print_info("GC256C")
 
 p = 2**255 + 3225
 a =  p -3
