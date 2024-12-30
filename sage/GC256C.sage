@@ -16,9 +16,9 @@ def projective_maps_optimized(phi,Fp):
     psi1XZ = psi1(x=X/Z)
     psi2XZ = psi2(x=X/Z)
     psi3XZ = psi3(x=X/Z)
-    a = psi1XZ*psi3XZ *Z^7
-    b = psi2XZ *Z^6
-    c = psi3XZ^3 *Z^6
+    a = psi1XZ*psi3XZ 
+    b = psi2XZ 
+    c = psi3XZ^3 
     return a,b,c
 
 
@@ -39,7 +39,15 @@ def end_composition_optimized(P):
     x3 = a2(x2,z2)  
     y3 = y2 *b2(x2,z2)
     z3 = z2*c2(x2,z2)
-    return  isoX(x3, y3), isoY(x3,y3), z3
+    #4th isogeny
+    x4 = a3(x3,z3)  
+    y4 = y3 *b3(x3,z3)
+    z4 = z3*c3(x3,z3)
+    #5th isogeny
+    x5 = a4(x4,z4)  
+    y5 = y4 *b4(x4,z4)
+    z5 = z4*c4(x4,z4)
+    return  isoX(x5, y5), isoY(x5,y5), z5
 
 p = 2^255 +3225
 a =  p -3
