@@ -142,4 +142,4 @@ isoY = iso.rational_maps()[1]
 x_end, y_end, z_end = end_composition_optimized(P)
 
 assert Q[0] == x_end/z_end
-#assert Q[1] == y_end/z_end
+assert Q[1] == y_end/z_end
