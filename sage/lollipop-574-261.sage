@@ -35,6 +35,42 @@ def projective_maps_optimized(phi,Fp, neg):
     c = psi3XZ^3 *Z^6*2176782336
     return a,b,c
 
+def end_composition_optimized(P):
+    x0 = P[0]
+    y0 = P[1]
+    z0 = 1 
+
+    #1st isogeny
+    x1 = a0(x0,z0)  
+    y1 = y0 *b0(x0,z0)
+    z1 = z0*c0(x0,z0)
+    #2nd isogeny
+    x2 = a1(x1,z1)  
+    y2 = y1 *b1(x1,z1)
+    z2 = z1*c1(x1,z1)
+    #3rd isogeny
+    x3 = a2(x2,z2)  
+    y3 = y2 *b2(x2,z2)
+    z3 = z2*c2(x2,z2)
+    #4th isogeny
+    x4 = a3(x3,z3)  
+    y4 = y3 *b3(x3,z3)
+    z4 = z3*c3(x3,z3)
+    #5th isogeny
+    x5 = a4(x4,z4)  
+    y5 = y4 *b4(x4,z4)
+    z5 = z4*c4(x4,z4)
+    #6th isogeny
+    x6 = a5(x5,z5)  
+    y6 = y5 *b5(x5,z5)
+    z6 = z5*c5(x5,z5)
+    #7th isogeny
+    x7 = a6(x6,z6)  
+    y7 = y6 *b6(x6,z6)
+    z7 = z6*c6(x6,z6)
+    return  isoX(x7, y7), isoY(x7,y7), z7
+
+
 p = 2163160611951109656514578155686584121369935567340260530653195705987773102423967
 aboldhat=1600224790493789893768878688270410785959510786167424698577648903928123990501736
 bboldhat=442173884976592923728839681693322529291546262090176625621658004289727200834915
