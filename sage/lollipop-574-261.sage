@@ -43,3 +43,9 @@ assert E6.j_invariant() == H.roots()[4][0]
 
 phi6 = E6.isogenies_prime_degree(5)[1]
 assert phi6.codomain().j_invariant() == H.roots()[6][0]
+
+# Computing eigenvalue 
+end =(phi6*phi5*phi4*phi3*phi2*phi1*phi0)
+iso =end.codomain().isomorphism_to(E0)
+full_end = (iso*end)
+trace = full_end.trace()
