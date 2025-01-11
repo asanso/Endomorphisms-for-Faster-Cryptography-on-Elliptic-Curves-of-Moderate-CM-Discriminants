@@ -17,3 +17,6 @@ print()
 
 # computing the cycle
 assert E0.j_invariant() == H.roots()[6][0]
+phi0 =  E0.isogenies_prime_degree(5)[0]
+E1 = phi0.codomain()
+assert E1.j_invariant() == H.roots()[3][0]
