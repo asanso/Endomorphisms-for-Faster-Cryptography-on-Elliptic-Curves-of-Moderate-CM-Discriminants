@@ -108,3 +108,5 @@ n = ZZ.random_element(r)
 S1 = n*P
 S2 = fast_scalar_mul(n,P)
 assert S1 == S2
+
+a0,b0,c0 = projective_maps_optimized(phi0,Fp)
