@@ -1,3 +1,38 @@
+def multi_scalar_mul(P, k1, endo, k2):
+    return k1*P + k2*endo(P)
+
+def fast_scalar_mul(n,P):
+    beta = vector([n,0])*N_inv
+    b = vector([int(beta[0]), int(beta[1])]) * N
+    k1 = n-b[0]
+    k2 = -b[1]
+    return  multi_scalar_mul(P,k1, full_end, k2)
+
+
+def projective_maps_optimized(phi,Fp):
+    rX,sXY = phi
+    Fpx = Fp['x']
+    x = Fpx.gen()
+    FpX = Fpx.fraction_field()
+    X = FpX.gen()
+    Fpxz = Fp['x', 'z']
+    FpXZ = FractionField(Fpxz)
+    X, Z = FpXZ.gens()
+    
+    psi1 = rX.numerator()
+    psi3 = rX.denominator().sqrt()
+    sX = sXY(y=1)
+    assert psi3^3 == sX.denominator()
+    psi2 = sX.numerator() 
+    psi1XZ = psi1(x=X/Z)
+    psi2XZ = psi2(x=X/Z)
+    psi3XZ = psi3(x=X/Z)
+    a = psi1XZ*psi3XZ *Z^16
+    b = psi2XZ *Z^15
+    c = psi3XZ^3 *Z^15  
+    return a,b,c
+
+
 p = 2163160611951109656514578155686584121369935567340260530653195705987773102423967
 aboldhat=1600224790493789893768878688270410785959510786167424698577648903928123990501736
 bboldhat=442173884976592923728839681693322529291546262090176625621658004289727200834915
@@ -68,16 +103,6 @@ M = Matrix([[int(-eigen),1], [int(r),0]])
 #print(M)
 N = M.LLL()
 N_inv = N**-1
-
-def multi_scalar_mul(P, k1, endo, k2):
-    return k1*P + k2*endo(P)
-
-def fast_scalar_mul(n,P):
-    beta = vector([n,0])*N_inv
-    b = vector([int(beta[0]), int(beta[1])]) * N
-    k1 = n-b[0]
-    k2 = -b[1]
-    return  multi_scalar_mul(P,k1, full_end, k2)
 
 n = ZZ.random_element(r)
 S1 = n*P
