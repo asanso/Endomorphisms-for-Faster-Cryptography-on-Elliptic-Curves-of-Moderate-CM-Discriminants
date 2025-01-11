@@ -32,3 +32,7 @@ assert E3.j_invariant() == H.roots()[5][0]
 phi3 = E3.isogenies_prime_degree(5)[0]
 E4 = phi3.codomain()
 assert E4.j_invariant() == H.roots()[2][0]
+
+phi4 = E4.isogenies_prime_degree(5)[1]
+E5 = phi4.codomain()
+assert E5.j_invariant() == H.roots()[1][0]
