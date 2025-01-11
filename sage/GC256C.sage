@@ -143,6 +143,3 @@ x_end, y_end, z_end = end_composition_optimized(P)
 
 assert Q[0] == x_end/z_end
 assert Q[1] == y_end/z_end
-
-
-a0,b0,c0 = projective_maps_optimized(phi0,Fp)
