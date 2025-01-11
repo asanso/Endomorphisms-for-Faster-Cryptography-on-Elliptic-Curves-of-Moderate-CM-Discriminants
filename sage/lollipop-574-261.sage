@@ -7,10 +7,10 @@ disc = t^2 - 4*p
 print(factor(disc))
 print()
 #list of curves on the crater
-#Fp = GF(p)
-#FpX = Fp['X']
-#X = FpX.gen()
-#D = fundamental_discriminant(-547)
-#H = FpX(hilbert_class_polynomial(D))
-#print(H.roots())
-#print()
+Fp = GF(p)
+FpX = Fp['X']
+X = FpX.gen()
+D = fundamental_discriminant(-3019)
+H = FpX(hilbert_class_polynomial(D))
+print(H.roots())
+print()
