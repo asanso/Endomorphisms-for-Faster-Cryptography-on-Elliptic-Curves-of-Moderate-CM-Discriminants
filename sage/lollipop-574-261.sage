@@ -8,7 +8,6 @@ def fast_scalar_mul(n,P):
     k2 = -b[1]
     return  multi_scalar_mul(P,k1, full_end, k2)
 
-
 def projective_maps_optimized(phi,Fp):
     rX,sXY = phi
     Fpx = Fp['x']
@@ -20,17 +19,18 @@ def projective_maps_optimized(phi,Fp):
     X, Z = FpXZ.gens()
     
     psi1 = rX.numerator()
-    psi3 = rX.denominator().sqrt()
+    psi3 = -rX.denominator().sqrt()
     sX = sXY(y=1)
-    assert psi3^3 == sX.denominator()
-    psi2 = sX.numerator() 
+    assert psi3^3 == (sX.denominator()/2176782336)
+    psi2 = sX.numerator()/2176782336
     psi1XZ = psi1(x=X/Z)
     psi2XZ = psi2(x=X/Z)
     psi3XZ = psi3(x=X/Z)
-    a = psi1XZ*psi3XZ *Z^16
-    b = psi2XZ *Z^15
-    c = psi3XZ^3 *Z^15  
+    a = psi1XZ*psi3XZ *Z^7*2176782336
+    b = psi2XZ *Z^6*2176782336
+    c = psi3XZ^3 *Z^6*2176782336
     return a,b,c
+
 
 
 p = 2163160611951109656514578155686584121369935567340260530653195705987773102423967
