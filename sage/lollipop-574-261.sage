@@ -14,3 +14,6 @@ D = fundamental_discriminant(-3019)
 H = FpX(hilbert_class_polynomial(D))
 print(H.roots())
 print()
+
+# computing the cycle
+assert E0.j_invariant() == H.roots()[6][0]
