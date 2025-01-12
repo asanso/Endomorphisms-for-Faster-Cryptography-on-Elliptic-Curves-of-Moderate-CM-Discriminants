@@ -90,7 +90,7 @@ E =  Lollipop574261(p, a, b, r, 1, eigen)
 P = E.random_point()
 R1 = P.scalar_mul(n)
 R2 = P.fast_scalar_mul(n)
-#assert R1 == R2
+assert R1 == R2
 
 #GC256C
 
