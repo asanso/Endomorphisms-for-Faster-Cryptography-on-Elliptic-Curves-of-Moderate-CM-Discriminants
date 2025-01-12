@@ -58,7 +58,7 @@ eigen = 115806615147810845389995031613040143024290913029017121859390021155699987
 E = Lollipop574261(p, a, b, r, 1, eigen)
 P = E.random_point()
 n = random.randint(0,r)
-l = 101
+l = 131
 
 t = cputime()
 for i in range(1000):
