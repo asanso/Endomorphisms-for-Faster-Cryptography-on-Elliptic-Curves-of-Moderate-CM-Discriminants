@@ -1,3 +1,10 @@
+# Benchmark Results Overview
+
+This document presents benchmark results for scalar multiplication optimizations on three elliptic curves: **Lollipop489201**, **Lollipop574261**, and **GC256C**. The benchmarks compare the performance of standard scalar multiplication against optimized methods, such as **endomorphism** and **GLV (Gallant–Lambert–Vanstone)**.
+
+For more details, refer to **Section 3** of the paper.
+
+
 ### Usage
 
 ```shell
