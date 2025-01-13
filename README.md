@@ -44,4 +44,7 @@ The benchmark results provide valuable insights into the efficiency of scalar mu
   * Lower values signify better performance.
 2. **Percentage Improvement**
  * The percentage improvements (e.g., "111% faster") demonstrate how much more efficient the optimized methods (endomorphism and GLV) are compared to standard scalar multiplication.
+3. **Comparative Context**
+ * In the first line of each curve’s results, the endomorphism optimization is compared against the number of doublings (`l)` indicated in the third row of Table 1 for the corresponding curve.
+ * The second entry compares standard scalar multiplication against scalar multiplication combined with the GLV optimization.
  
