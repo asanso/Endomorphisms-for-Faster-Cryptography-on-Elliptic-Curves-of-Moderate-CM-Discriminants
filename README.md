@@ -34,7 +34,7 @@ standard scalar multiplication:   2.903ms
 GLV based on ϕ:                   2.064ms (41% faster)
 ```
 
-**N.B.** The benchmarks represent the average performance of 1,000 instances of the routine, and they do not implement the Horner optimization.
+**N.B.** The benchmarks are averaged over 1,000 instances of the routine, and the endomorphism computation does not implement the Horner optimization.
 
 ## How to Interpret Results
 
