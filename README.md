@@ -9,7 +9,7 @@ This document presents benchmark results for scalar multiplication on three elli
 cd python
 sage -python bench.py 
 ================================================================================
-                               GC256C (Russian curve)                                    
+                                 GC256C (Russian curve)                                    
 ================================================================================
 scalar multiplication by 2^l':    0.898ms
 endomorphism ϕ:                   0.330ms (172% faster)
