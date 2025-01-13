@@ -41,7 +41,7 @@ The benchmark results provide valuable insights into the efficiency of scalar mu
   * The results are displayed in milliseconds (ms), indicating the time taken for each operation.
   * Lower values signify better performance.
 2. **Percentage Improvement**
- * The percentage improvements (e.g., "111% faster") demonstrate how much more efficient the optimized solutions (the endomorphism $\phi$ and GLV based on $\phi$) are compared to standard scalar multiplication.
+ * The percentage improvements (e.g., "111% faster") demonstrate how much more efficient the optimized solutions (the endomorphism $\phi$ and GLV based on $\phi$) are compared to the double(-and-add) scalar multiplication.
 3. **Comparative Context**
  * In the first two lines of each curve’s results, the time of evaluating the endomorphism $\phi$ is compared against that taken to double a point $\ell^\prime = \lceil \ell/2 \rceil$ times, where the value $\ell$ is indicated in the third column of Table 1 from the paper.
  * The second entry compares the standard scalar multiplication against the GLV optimization using $\phi$.
