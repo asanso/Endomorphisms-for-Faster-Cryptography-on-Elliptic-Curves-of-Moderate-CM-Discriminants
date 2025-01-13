@@ -43,5 +43,5 @@ The benchmark results provide valuable insights into the efficiency of scalar mu
   * The results are displayed in milliseconds (ms), indicating the time taken for each operation.
   * Lower values signify better performance.
 2. **Percentage Improvement**
-    * The percentage improvements (e.g., "111% faster") demonstrate how much more efficient the optimized methods (endomorphism and GLV) are compared to standard scalar multiplication.
+ * The percentage improvements (e.g., "111% faster") demonstrate how much more efficient the optimized methods (endomorphism and GLV) are compared to standard scalar multiplication.
  
