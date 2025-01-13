@@ -1,6 +1,6 @@
 # Benchmark Results Overview
 
-This document presents benchmark results for scalar multiplication on three elliptic curves: **GC256C (Russian curve)**, **Lollipop489-201**, and **Lollipop574-261**. The benchmarks compare the performance of the optimized **GLV (Gallant–Lambert–Vanstone)** method against the standard **double-and-add** scalar multiplication. For more details, refer to the paper and especially to its Section 3.
+This document presents benchmark results for scalar multiplication on three elliptic curves: **GC256C (Russian curve)**, **Lollipop-489-201**, and **Lollipop-574-261**. The benchmarks compare the performance of the optimized **GLV (Gallant–Lambert–Vanstone)** method against the standard **double-and-add** scalar multiplication. For more details, refer to the paper and especially to its Section 3.
 
 
 ## Usage
@@ -17,7 +17,7 @@ endomorphism ϕ:                0.330ms (172% faster)
 standard scalar multiplication:   2.710ms
 GLV based on ϕ:                1.929ms (41% faster)
 ================================================================================
-                                 Lollipop489-201                                 
+                                 Lollipop-489-201                                 
 ================================================================================
 scalar multiplication by 2^l':    0.703ms
 endomorphism ϕ:                0.334ms (111% faster)
@@ -25,7 +25,7 @@ endomorphism ϕ:                0.334ms (111% faster)
 standard scalar multiplication:   2.029ms
 GLV based on ϕ:                1.551ms (31% faster)
 ================================================================================
-                                 Lollipop574-261                                 
+                                 Lollipop-574-261                                 
 ================================================================================
 scalar multiplication by 2^l':    0.960ms
 endomorphism ϕ:                0.373ms (157% faster)
