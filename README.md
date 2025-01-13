@@ -5,7 +5,7 @@ This document presents benchmark results for scalar multiplication optimizations
 For more details, refer to **Section 3** of the paper.
 
 
-### Usage
+## Usage
 
 ```shell
 cd python
@@ -35,3 +35,13 @@ endomorphism:           0.330ms (172% faster)
 scalar multiplication:                  2.710ms
 GLV:            1.929ms (41% faster)
 ```
+## How to Interpret Results
+
+The benchmark results provide valuable insights into the efficiency of scalar multiplication optimizations. Below are guidelines to help interpret the results:
+
+1. **Execution Time**
+  * The results are displayed in milliseconds (ms), indicating the time taken for each operation.
+  * Lower values signify better performance.
+2. **Percentage Improvement**
+    * The percentage improvements (e.g., "111% faster") demonstrate how much more efficient the optimized methods (endomorphism and GLV) are compared to standard scalar multiplication.
+ 
