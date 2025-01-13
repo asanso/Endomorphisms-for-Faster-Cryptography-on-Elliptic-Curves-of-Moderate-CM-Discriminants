@@ -1,8 +1,6 @@
 # Benchmark Results Overview
 
-This document presents benchmark results for scalar multiplication optimizations on three elliptic curves: **Lollipop489201**, **Lollipop574261**, and **GC256C (Russian curve)**. The benchmarks compare the performance of standard double-and-add scalar multiplication against optimized methods, such as **endomorphism** and **GLV (Gallant–Lambert–Vanstone)**.
-
-For more details, refer to **Section 3** of the paper.
+This document presents benchmark results for scalar multiplication on three elliptic curves: **Lollipop489201**, **Lollipop574261**, and **GC256C (Russian curve)**. The benchmarks compare the performance of the optimized **GLV (Gallant–Lambert–Vanstone)** method against the standard **double-and-add** scalar multiplication. For more details, refer to the paper and especially to its **Section 3**.
 
 
 ## Usage
