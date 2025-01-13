@@ -1,6 +1,6 @@
 # Benchmark Results Overview
 
-This document presents benchmark results for scalar multiplication optimizations on three elliptic curves: **Lollipop489201**, **Lollipop574261**, and **GC256C**. The benchmarks compare the performance of standard double-and-add scalar multiplication against optimized methods, such as **endomorphism** and **GLV (Gallant–Lambert–Vanstone)**.
+This document presents benchmark results for scalar multiplication optimizations on three elliptic curves: **Lollipop489201**, **Lollipop574261**, and **GC256C (Russian curve)**. The benchmarks compare the performance of standard double-and-add scalar multiplication against optimized methods, such as **endomorphism** and **GLV (Gallant–Lambert–Vanstone)**.
 
 For more details, refer to **Section 3** of the paper.
 
@@ -10,6 +10,14 @@ For more details, refer to **Section 3** of the paper.
 ```shell
 cd python
 sage -python bench.py 
+================================================================================
+                               GC256C (Russian curve)                                    
+================================================================================
+scalar multiplication by 2^l':    0.898ms
+endomorphism ϕ:                0.330ms (172% faster)
+
+standard scalar multiplication:   2.710ms
+GLV based on ϕ:                1.929ms (41% faster)
 ================================================================================
                                  Lollipop489201                                 
 ================================================================================
@@ -26,14 +34,6 @@ endomorphism ϕ:                0.373ms (157% faster)
 
 standard scalar multiplication:   2.903ms
 GLV based on ϕ:                2.064ms (41% faster)
-================================================================================
-                                     GC256C                                     
-================================================================================
-scalar multiplication by 2^l':    0.898ms
-endomorphism ϕ:                0.330ms (172% faster)
-
-standard scalar multiplication:   2.710ms
-GLV based on ϕ:                1.929ms (41% faster)
 ```
 ## How to Interpret Results
 
