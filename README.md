@@ -34,7 +34,7 @@ standard scalar multiplication:   2.903ms
 GLV based on ϕ:                   2.064ms (41% faster)
 ```
 
-**N.B.** The benchmarks are averaged over 1000 instances of the routine. Besides, the endomorphism $\phi$ is not evaluated via (the homogeneous version of) Horner's scheme, but more elementarily. Therefore, (GLV based on) $\phi$ is even faster when implemented more properly.
+**N.B.** The benchmarks are averaged over 1000 instances of the routine. Besides, the endomorphism $\phi$ is not evaluated via (the homogeneous version of) Horner's scheme as proposed in the paper, but more elementarily. Therefore, (GLV based on) $\phi$ is even faster when implemented more properly.
 
 ## How to Interpret Results
 
