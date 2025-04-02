@@ -6,7 +6,7 @@ This document presents benchmark results for scalar multiplication on three elli
 ## Usage
 
 ```shell
-cd python
+cd discriminants-thousands
 sage -python bench.py 
 ================================================================================
                                  GC256C (Russian curve)                                    
