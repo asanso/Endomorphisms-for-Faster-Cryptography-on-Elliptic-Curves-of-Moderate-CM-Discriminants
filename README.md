@@ -2,7 +2,7 @@
 
 ## CM discriminants up to a few thousands
 
-This document presents benchmark results for scalar multiplication on three elliptic curves: **GC256C (Russian curve)**, **Lollipop-489-201**, and **Lollipop-574-261**. The benchmarks compare the performance of the optimized **GLV (Gallant–Lambert–Vanstone)** method against the standard **double-and-add** scalar multiplication. For more details, refer to the paper and especially to its Section 3.
+This section presents benchmark results for scalar multiplication on three elliptic curves: **GC256C (Russian curve)**, **Lollipop-489-201**, and **Lollipop-574-261**. The benchmarks compare the performance of the optimized **GLV (Gallant–Lambert–Vanstone)** method against the standard **double-and-add** scalar multiplication. For more details, refer to the paper and especially to its Section 3.
 
 ### Usage
 
@@ -37,7 +37,7 @@ GLV based on ϕ:                   2.064ms (41% faster)
 
 ##  CM discriminants up to one hundred millions
 
-This document presents benchmark results for scalar multiplication on three elliptic curves: **MNT4-992**, **MNT6-992**, and **Lollipop-956-451**, The benchmarks compare the performance of the optimized **GLV (Gallant–Lambert–Vanstone)** method against the standard **double-and-add** scalar multiplication. For more details, refer to the paper and especially to its Section 3.
+This section presents benchmark results for scalar multiplication on three elliptic curves: **MNT4-992**, **MNT6-992**, and **Lollipop-956-451**, The benchmarks compare the performance of the optimized **GLV (Gallant–Lambert–Vanstone)** method against the standard **double-and-add** scalar multiplication. For more details, refer to the paper and especially to its Section 3.
 
 ## Usage
 
