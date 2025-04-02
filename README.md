@@ -10,7 +10,7 @@ This document presents benchmark results for scalar multiplication on three elli
 cd discriminants-thousands
 sage -python bench.py 
 ================================================================================
-                                 GC256C (Russian curve)                                    
+                                  GC256C (Russian curve)                                    
 ================================================================================
 scalar multiplication by 2^l':    0.898ms
 endomorphism ϕ:                   0.330ms (172% faster)
@@ -18,7 +18,7 @@ endomorphism ϕ:                   0.330ms (172% faster)
 standard scalar multiplication:   2.710ms
 GLV based on ϕ:                   1.929ms (41% faster)
 ================================================================================
-                                 Lollipop-489-201                                 
+                                  Lollipop-489-201                                 
 ================================================================================
 scalar multiplication by 2^l':    0.703ms
 endomorphism ϕ:                   0.334ms (111% faster)
@@ -26,7 +26,7 @@ endomorphism ϕ:                   0.334ms (111% faster)
 standard scalar multiplication:   2.029ms
 GLV based on ϕ:                   1.551ms (31% faster)
 ================================================================================
-                                 Lollipop-574-261                                 
+                                  Lollipop-574-261                                 
 ================================================================================
 scalar multiplication by 2^l':    0.960ms
 endomorphism ϕ:                   0.373ms (157% faster)
@@ -45,7 +45,7 @@ This document presents benchmark results for scalar multiplication on three elli
 cd discriminants-millions
 sage -python bench.py
 ================================================================================
-                                    MNT4-992                                    
+                                  MNT4-992                                    
 ================================================================================
 scalar multiplication by 2^l':    5.758ms
 endomorphism ϕ:                   3.110ms (85% faster)
@@ -53,7 +53,7 @@ endomorphism ϕ:                   3.110ms (85% faster)
 standard scalar multiplication:   19.105ms
 GLV based on ϕ:                   14.620ms (31% faster)
 ================================================================================
-                                    MNT6-992                                    
+                                  MNT6-992                                    
 ================================================================================
 scalar multiplication by 2^l':    5.800ms
 endomorphism ϕ:                   3.095ms (87% faster)
@@ -61,7 +61,7 @@ endomorphism ϕ:                   3.095ms (87% faster)
 standard scalar multiplication:   19.007ms
 GLV based on ϕ:                   14.392ms (32% faster)
 ================================================================================
-                                    Lollipop-956-451                                 
+                                  Lollipop-956-451                                 
 ================================================================================
 scalar multiplication by 2^l':    2.593ms
 endomorphism ϕ:                   1.407ms (84% faster)
