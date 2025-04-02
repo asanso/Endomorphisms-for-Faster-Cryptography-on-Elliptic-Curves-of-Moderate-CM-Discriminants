@@ -44,7 +44,7 @@ This document presents benchmark results for scalar multiplication on three elli
 ## Usage
 
 ```shell
-cd python
+cd discriminants-millions
 sage -python bench.py
 ================================================================================
                                     MNT4-992                                    
@@ -72,7 +72,7 @@ standard scalar multiplication:   8.782ms
 GLV based on ϕ:                   6.384ms (38% faster)
 ```
 
-**N.B.** The benchmarks are averaged over 1000 instances of the routine. Besides, the endomorphism $\phi$ is not evaluated via (the homogeneous version of) Horner's scheme as proposed in the first paper https://eprint.iacr.org/2024/1985, but more elementarily. Therefore, (GLV based on) $\phi$ is even faster when implemented more properly.
+**N.B.** The benchmarks are averaged over 1000 instances of the routine. Besides, the endomorphism $\phi$ is not evaluated via (the homogeneous version of) Horner's scheme as proposed in the paper https://eprint.iacr.org/2024/1985, but more elementarily. Therefore, (GLV based on) $\phi$ is even faster when implemented more properly.
 
 ## How to Interpret Results
 
