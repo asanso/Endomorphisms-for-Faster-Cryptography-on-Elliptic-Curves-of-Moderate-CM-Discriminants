@@ -72,7 +72,7 @@ GLV based on ϕ:                   6.384ms (38% faster)
 
 ## How to Interpret Results
 
-The benchmark results provide valuable insights into the efficiency of scalar multiplication optimizations. Below are guidelines to help interpret the results:
+The benchmark results provide valuable insights into the efficiency of scalar multiplication optimizations. Below are guidelines to help in interpreting the results:
 
 1. **Execution Time**
   * The results are displayed in milliseconds (ms), indicating the time taken for each operation.
