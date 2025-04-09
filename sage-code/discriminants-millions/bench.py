@@ -5,8 +5,8 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
 
 from sage.misc.misc import cputime
-from  mnt6992 import MNT6992
-from  mnt4992 import MNT4992
+from  MNT6992 import MNT6992
+from  MNT4992 import MNT4992
 from lollipop956451 import Lollipop956451
 from common.util import *
 
