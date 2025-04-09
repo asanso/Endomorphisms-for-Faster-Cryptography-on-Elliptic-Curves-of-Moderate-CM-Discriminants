@@ -7,7 +7,7 @@ This section presents benchmark results for scalar multiplication on three ellip
 ### Usage
 
 ```shell
-cd discriminants-thousands
+cd sage-code/discriminants-thousands
 sage -python bench.py 
 ================================================================================
                                   GC256C (Russian curve)                                    
@@ -42,7 +42,7 @@ This section presents benchmark results for scalar multiplication on three ellip
 ## Usage
 
 ```shell
-cd discriminants-millions
+cd sage-code/discriminants-millions
 sage -python bench.py
 ================================================================================
                                   MNT4-992                                    
