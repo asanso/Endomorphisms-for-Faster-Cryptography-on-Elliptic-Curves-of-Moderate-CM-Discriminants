@@ -1,5 +1,10 @@
 import random
-from curve import WeierstrassCurve
+import sys
+import os
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(parent_dir)
+
+from common.curve import WeierstrassCurve
 from lollipop489201 import Lollipop489201
 from lollipop574261 import Lollipop574261
 from gc256c import GC256C

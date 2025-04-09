@@ -1,9 +1,14 @@
 import random
+import sys
+import os
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(parent_dir)
+
 from sage.misc.misc import cputime
 from lollipop489201 import Lollipop489201
 from lollipop574261 import Lollipop574261
 from gc256c import GC256C
-from util import *
+from common.util import *
 
 # Lollipop489201
 
