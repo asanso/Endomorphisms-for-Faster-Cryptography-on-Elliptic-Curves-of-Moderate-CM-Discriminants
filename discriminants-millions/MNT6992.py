@@ -1,8 +1,13 @@
+import sys
+import os
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(parent_dir)
+
 from sage.all import FractionField
 from sage.matrix.constructor import Matrix
 from sage.modules.free_module_element import free_module_element as vector
-from curve import WeierstrassCurve
-from curve import PointWeierstrass
+from common.curve import WeierstrassCurve
+from common.curve import PointWeierstrass
 
 class  MNT6992(WeierstrassCurve):
 

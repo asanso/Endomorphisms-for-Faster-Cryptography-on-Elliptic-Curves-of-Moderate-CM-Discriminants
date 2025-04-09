@@ -1,8 +1,14 @@
 import random
-from curve import WeierstrassCurve
-from  MNT6992 import MNT6992
-from  MNT4992 import MNT4992
+import sys
+import os
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(parent_dir)
+
+from common.curve import WeierstrassCurve
+from MNT6992 import MNT6992
+from MNT4992 import MNT4992
 from lollipop956451 import Lollipop956451
+from common.util import *
 
 #mnt6-992
 
